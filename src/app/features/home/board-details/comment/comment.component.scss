@@ -1,0 +1,13 @@
+.comment {
+  &__text {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--secondary);
+  }
+
+  &__date {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+  }
+}

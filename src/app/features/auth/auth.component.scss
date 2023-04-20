@@ -1,0 +1,58 @@
+.auth {
+  margin: 9rem auto;
+  width: 47rem;
+  display: flex;
+  box-shadow: var(--box-shadow);
+  
+  &__container{
+    padding: 2rem 1rem;
+    flex-basis: 20rem;
+    border: 2px solid var(--primary);
+  }
+  
+  &__header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  &__title{
+    font-size: 25px;  
+    letter-spacing: 1px;  
+    color: var(--primary);
+  }
+  
+  &__content {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  &__text{
+    color: var(--primary);
+  }
+  
+  &__text_big{
+    font-size: 20px;  
+    letter-spacing: 0.7px;  
+  }
+  
+  &__list{
+    list-style: none;
+    justify-content: center;
+  }
+  
+  &__list-item{
+    margin-bottom: 0.6rem;
+  }
+  
+  &__form {
+    flex-basis: 27rem;
+    background-color: var(--primary);
+    box-shadow: var(--box-shadow);
+    color: var(--white);
+  }
+}

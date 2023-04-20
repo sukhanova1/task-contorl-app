@@ -1,0 +1,41 @@
+<div class="item">
+  <div class="item__content">
+    <p class="item__name">{{board.name}}</p>
+    <p class="item__date">{{board.creationDate}}</p>
+    <p>{{board.description}}</p>
+  </div>
+  <div class="item__details hide">
+    <form class="item__form"
+      #editBoardName="ngForm" (ngSubmit)="onSubmit(editBoardName)" ngNativeValidate>
+      
+      <app-input 
+        inputType="simple"
+        name="name" placeholder="Edit Board Name"
+        [(ngModel)]="name"
+      ></app-input>
+
+      <app-button 
+        buttonType="text" size="submit-small"
+        title="Save" type="submit"
+      ></app-button>
+    </form>
+    
+    <div class="item__task-info">
+      <p *ngIf="todo">To Do: {{ todo.length }} </p> 
+      <p *ngIf="inProgress">In Progress: {{ inProgress.length }}</p>
+      <p *ngIf="done">Done: {{ done.length }}</p>
+    </div>
+    
+    <div class="item__btns">
+      <app-button 
+        buttonType="text"
+        title="Delete Board" type="delete" 
+        (clickEmitter)="deleteBoard()"
+      ></app-button>
+      
+      <a [routerLink]="[board.id]" class="item__learn-more-btn">Learn more...</a>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,27 @@
+<div class="header">
+  <div class="nav">
+    <h1 class="nav__title">{{ pageTitle | uppercase }}</h1> 
+    <div>
+      <span class="nav__text" *ngIf="userName$ | async as username">{{ username }}</span>
+      <app-button 
+        buttonType="text"
+        title="Logout" type="filter" 
+        (clickEmitter)="logout()"
+      ></app-button>
+    </div>
+  </div>
+  <div class="filter">
+    <input type="text" class="filter__input" placeholder="Search" 
+      [(ngModel)]="name" (ngModelChange)="onNameChange($event)">
+      
+    <select class="filter__select" [(ngModel)]="sortByParams" (ngModelChange)="onSortParamsChange($event)">
+      <option value="" selected>Sort By</option>
+      <option value="name">Name</option>
+      <option value="creationDate">Date of Creation</option>
+    </select>
+    
+    <app-button buttonType="text" title="ASC" (clickEmitter)="sortAsc()" type="filter"></app-button>
+    <app-button buttonType="text" title="DESC" (clickEmitter)="sortDesc()" type="filter"></app-button>
+  </div>
+</div>
+

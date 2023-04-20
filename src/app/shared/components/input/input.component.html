@@ -1,0 +1,51 @@
+<ng-container *ngTemplateOutlet="inputType==='simple' ? simple : complicated"></ng-container>
+
+<ng-template #simple>
+  <input class="form__input" type="text" 
+    [placeholder]="placeholder"
+    [name]="name" [id]="name" 
+    [(ngModel)]="value" 
+    (ngModelChange)="updateChanges()"   
+/></ng-template>
+
+<ng-template #complicated>
+  <div class="form__group">
+    <label for="fieldName">{{ label }}:</label>
+    <input class="form__input" 
+      [id]="fieldName" [name]="fieldName"
+      [type]="type" [placeholder]="placeholder"
+      [value]="value"
+      [disabled]="isDisabled"
+      (input)="onChange($event)"
+      (blur)="touched()"
+    />
+    
+    <div class="form__error-message" *ngIf="formField?.invalid && (formField?.dirty || formField?.touched)">
+      <p *ngIf="formField?.hasError('required')">  <sup>*</sup>
+        {{ label }} is required.
+      </p>
+      
+      <p *ngIf="formField?.hasError('minlength')">  <sup>*</sup>
+        {{ label }} must be at least 4 characters long.
+      </p>
+      
+      <p *ngIf="formField?.hasError('maxlength')">  <sup>*</sup>
+        {{ label }} the maximum number of characters is 72.
+      </p>
+      
+      <p *ngIf="formField?.hasError('nameInvalid')">  <sup>*</sup>
+        {{ label }} cannot starts with number.
+      </p>
+      
+      <p *ngIf="formField?.hasError('email')">  <sup>*</sup>
+        Invalid email.
+      </p>
+      
+      <p *ngIf="formField?.hasError('pattern')">  <sup>*</sup>
+        Password must contain minimum 8 characters, at least one letter and one number.
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+

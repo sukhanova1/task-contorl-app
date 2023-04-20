@@ -1,0 +1,41 @@
+<form class="register__form" [formGroup]="registerFormData" novalidate 
+  (ngSubmit)="register(registerFormData.value)">
+  
+  <app-input
+    inputType="complicated"
+    [parentForm]="registerFormData"
+    placeholder="Enter your email"
+    type="email" label="Email"
+    fieldName="email"
+    formControlName="email"
+  ></app-input>
+  <app-input
+    inputType="complicated"
+    [parentForm]="registerFormData"
+    placeholder="Enter your password"
+    type="password" label="Password"
+    fieldName="password"
+    formControlName="password"
+  ></app-input>
+  <app-input
+    inputType="complicated"
+    [parentForm]="registerFormData"
+    placeholder="Confirm your password"
+    type="password" label="Confirm Password"
+    fieldName="confirmPassword"
+    formControlName="confirmPassword"
+  ></app-input>
+  
+  <p class="register__error-message" *ngIf="serverError$ | async as error">  <sup>*</sup>{{ error }}</p>
+  <p class="register__error-message" *ngIf="registerFormData.hasError('confirmPass')">  <sup>*</sup>
+    Passwords do not match.
+  </p> 
+  
+  <app-button class="register__btn"
+    buttonType="text" 
+    title="Sign up" type="submit"
+    [isDisabled]="registerFormData.invalid"
+  ></app-button>
+  
+  <a class="register__link"  [routerLink]="['/auth/login']">Already have an account?</a>
+</form>

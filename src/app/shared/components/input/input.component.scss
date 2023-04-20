@@ -1,0 +1,21 @@
+.form {
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__input {
+    padding: 0.5rem;
+    font-size: 15px;
+    border: none;
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+  }
+
+  &__error-message p {
+    font-size: 15px;
+    line-height: 15px;
+    color: red;
+  }
+}

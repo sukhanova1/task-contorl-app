@@ -1,0 +1,9 @@
+<div>
+  <p class="comment__text">{{ comment.name }}</p>
+  <p class="comment__date"> {{ comment.creationDate }}</p>
+</div>
+<app-button
+  buttonType="text" size="delete-small"
+  title="Delete" type="delete"
+  (clickEmitter)="deleteComment()"
+></app-button>

@@ -1,0 +1,25 @@
+<div class="column">
+  <p class="column__name">{{ title }}</p>
+  <div class="column__container">
+    <div class="column__btns">
+      <app-button 
+        buttonType="image" title="" 
+        type="add" size="add-small" 
+        (clickEmitter)="addModal(title)" 
+        buttonSrc="../../assets/plus-icon.png"
+      ></app-button>
+      <input type="color" title="Change color" 
+        appColumnColor [(ngModel)]="columnColor" 
+        [color]="columnColor" [columnTitle]="title" [boardId]="boardId"
+      > 
+    </div>
+    
+    <div class="column__tasks" (dragover)="onDragOver($event)" (drop)="onDrop($event, title)">
+      <app-task *ngFor="let task of tasks$ | async | nameFilter: nameFilterValue 
+        | sort: [sortByValue, sortDirectionValue]; let position = index" [task]="task" 
+        (handleClick)="showComments($event)"
+        [draggable]="true" (dragstart)="onDragStart($event, task.status, task.id)" (dargend)="onDragEnd($event)"
+      ></app-task>
+    </div>
+  </div>
+</div>

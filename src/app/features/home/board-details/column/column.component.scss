@@ -1,0 +1,32 @@
+.column {
+  width: 27rem;
+
+  &__name{
+    margin-bottom: 0.8rem;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
+  &__btns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  &__container{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: var(--box-shadow);
+ }
+ 
+ &__tasks{
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+ }
+}

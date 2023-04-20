@@ -1,0 +1,56 @@
+<app-page-header [pageTitle]="pageTitle" (nameFilter)="onNameFilter($event)" (sortBy)="onSortParamsChange($event)" 
+  (sortASC)="onSortDirectionChange($event)" (sortDESC)="onSortDirectionChange($event)"
+></app-page-header>
+<div class="dashboard">  
+  <app-button class="dashboard__btn"
+    buttonType="image" title="Add new" 
+    type="add" size="add-big" 
+    (clickEmitter)="showModal()" 
+    buttonSrc="../../assets/plus-icon.png">
+  </app-button>
+  
+  <div class="modal" *ngIf="modalActive">
+    <div class="modal__container">
+      <div class="modal__icon" (click)="closeModal()">
+        <a><img src="../../assets/close-icon.png" alt="close icon" width="40px"></a>
+      </div>
+      <form class="modal__content" 
+        [formGroup]="createBoardForm" novalidate (ngSubmit)="onSubmit()">
+        
+        <app-input 
+          inputType="complicated"
+          [parentForm]="createBoardForm"
+          type="text" label="Name"
+          placeholder="Enter board name" 
+          fieldName="name"
+          formControlName="name"
+        ></app-input>
+        <app-input 
+          inputType="complicated"
+          [parentForm]="createBoardForm"
+          type="text" label="Description"
+          placeholder="Enter board description" 
+          fieldName="description"
+          formControlName="description"
+        ></app-input>
+        <app-button class="modal__btn"
+          buttonType="text"
+          title="Create Board" type="submit" 
+          [isDisabled]="createBoardForm.invalid"
+        ></app-button>
+      </form>
+    </div>
+  </div>
+
+  <app-item 
+    *ngFor="let board of boards$ | async | nameFilter: nameFilterValue | sort:[sortByValue, sortDirectionValue]" 
+    [board]="board"
+  ></app-item>
+  
+  <ng-container *ngIf="boards$ | async as boards">
+    <div class="dashboard__message-box" *ngIf="boards.length===0">
+      <p class="dashboard__no-boards-message">...Opps, it seems you don't have any boards. </p>
+      <p class="dashboard__no-boards-message">Click 'Add new' button to create one..</p>
+    </div>
+  </ng-container>
+</div>

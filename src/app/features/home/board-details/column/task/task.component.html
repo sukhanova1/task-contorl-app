@@ -1,0 +1,38 @@
+<div class="task">
+  <p class="task__date">{{task.creationDate}}</p>
+  <p class="task__name">{{task.name}}</p>
+  <div class="task__tools">
+    <div class="task__icon-box">
+      <div class="task__icon" (click)="showEditTaskForm()">
+        <img src="../../../../../../assets/edit-icon.png" alt="edit icon" title="Edit task" width="23px">
+      </div>
+      <div class="task__icon" (click)="showComments()">
+        <img src="../../../../../../assets/comments-icon.png" alt="comments icon" title="Comments" width="29px">
+      </div>
+    </div>
+    <div class="task__icon-box">
+      <div class="task__icon" (click)="archiveTask()">
+        <img src="../../../../../../assets/archive-icon.png" alt="archive icon" title="Archive task" 
+          width="21px">
+      </div>
+      <div class="task__icon" (click)="deleteTask()">
+        <img src="../../../../../../assets/delete-icon.png" alt="delete icon" title="Delete task" width="30px">
+      </div>
+    </div>
+  </div>
+  
+  <ng-template [ngIf]="taskEditActive">
+    <form class="task__form" #editTaskName="ngForm" (ngSubmit)="editTask(editTaskName)" ngNativeValidate>
+      <app-input 
+        inputType="simple"
+        name="name" placeholder="Edit task name"
+        [(ngModel)]="name"
+      ></app-input>
+
+      <app-button 
+        buttonType="text" size="submit-small"
+        title="Save" type="submit"
+      ></app-button>
+    </form>
+  </ng-template>
+</div>

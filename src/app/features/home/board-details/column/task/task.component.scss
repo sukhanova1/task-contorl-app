@@ -1,0 +1,58 @@
+.task{
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: white;
+  
+  &:hover{
+    background-color: var(--secondary-light);
+  }
+  
+  &__name{
+    margin: 0.5rem 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  &__date{
+    align-self: flex-end;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__tools{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  &__icon-box {
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  &__icon{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    
+    &:hover{
+      background-color: var(--secondary);
+      border: 1px solid var(--secondary);
+    }
+  }
+  
+  &__form{
+    margin-top: 0.5rem;
+    display:flex;
+    justify-content: space-around;
+  }
+}

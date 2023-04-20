@@ -1,0 +1,111 @@
+.board{
+  padding: 1rem 7rem;
+  color: var(--primary-dark);
+  
+  &__dscr{
+    margin-bottom: 0.5rem;
+    font-size: 20px;
+  }
+  
+  &__btns{
+    margin-bottom: 3rem;
+    margin-left: 1rem;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  &__link{
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    
+    &:hover{
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+  }
+  
+  &__container{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.board__modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, .5);
+  transition: opacity .2s ease;
+  
+  &-container{
+    margin: 8rem auto;
+    width: 30rem;
+    min-height: 22rem;
+    max-height: 33rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+  }
+  
+  &-name{
+    margin: -1.5rem 2rem 0 2rem;
+    font-size: 23px;
+    font-weight: 600;
+    text-align: center;
+    
+    &:last-of-type{
+      margin-top: 0rem;
+    }
+  }
+  
+  &-icon{
+    align-self: flex-end;
+  }
+  
+  &-item{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+  &-content {
+    padding: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
+  }
+  
+  &-text{
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--secondary);
+  }
+  
+  &-date{
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  &-comments-form {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  &-form{
+    padding: 0rem 2rem;  
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  &-btn{
+    align-self: center;
+  }
+}

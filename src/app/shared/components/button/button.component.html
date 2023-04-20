@@ -1,0 +1,18 @@
+<ng-container *ngTemplateOutlet="buttonType==='text' ? text : image"></ng-container>
+
+<ng-template #text>
+  <button
+    [class]="getClassName()"
+    [disabled] = "isDisabled"
+    (click)="clickEmitter.emit()">
+    {{title}}
+  </button> 
+</ng-template>
+
+<ng-template #image>
+  <div [class]="getClassName()" (click)="clickEmitter.emit()">
+    <img alt="image button" width="60px"
+      [src]="buttonSrc"
+    /> {{title}}
+  </div>
+</ng-template>

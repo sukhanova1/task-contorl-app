@@ -1,0 +1,27 @@
+<form class="login__form" [formGroup]="loginFormData" novalidate (ngSubmit)="onSubmit(loginFormData.value)">
+  <app-input
+    inputType="complicated"
+    [parentForm]="loginFormData"
+    placeholder="Enter your email"
+    type="email" label="Email"
+    fieldName="email"
+    formControlName="email"
+  ></app-input>
+  <app-input
+    inputType="complicated"
+    [parentForm]="loginFormData"
+    placeholder="Enter your password"
+    type="password" label="Password"
+    fieldName="password"
+    formControlName="password"
+  ></app-input>
+  <div class="login__error-message" *ngIf="serverError$ | async as error">  <sup>*</sup>{{ error }}</div>
+  <app-button class="login__btn"
+    buttonType="text" 
+    title="Login" type="submit"
+    [isDisabled]="loginFormData.invalid"
+  ></app-button>
+  <p class="login__text">Don't have an account yet? 
+    <a class="login__link"  [routerLink]="['/auth/register']"> Sign up</a>
+  </p>
+</form>

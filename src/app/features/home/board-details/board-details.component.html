@@ -1,0 +1,113 @@
+<app-page-header *ngIf="board$ | async as board" [pageTitle]="board.name"
+  (nameFilter)="onNameFilter($event)" (sortBy)="onSortParamsChange($event)"
+  (sortASC)="onSortDirectionChange($event)" (sortDESC)="onSortDirectionChange($event)"
+></app-page-header>
+
+<div class="board">
+  <p class="board__dscr" *ngIf="board$ | async as board">{{ board.description }}</p>
+  <div class="board__btns">
+    <a class="board__link" (click)="showArchivedTasksModal()">Archived..</a>
+    <app-button 
+      buttonType="text"
+      title="Delete Board"
+      type="delete"
+      (clickEmitter)="deleteBoard()"
+    ></app-button>
+  </div>
+  
+  <div class="board__modal" *ngIf="archivedTasksModal || addTasksModal || commentsModal">
+    <div class="board__modal-container">
+      <div class="board__modal-icon" (click)="closeModal()">
+        <img src="../../assets/close-icon.png" alt="close icon" width="40px">
+      </div>
+      
+      <ng-container [ngSwitch]="switchCondition">
+        <ng-container *ngSwitchCase="archivedTasksModal" [ngTemplateOutlet]="archivedTasksTemplate"></ng-container>
+        <ng-container *ngSwitchCase="addTasksModal" [ngTemplateOutlet]="addTasksTemplate"></ng-container>
+        <ng-container *ngSwitchCase="commentsModal" [ngTemplateOutlet]="commentsTemplate"></ng-container>
+        <ng-container *ngSwitchDefault [ngTemplateOutlet]="default"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+  
+  <ng-template #default></ng-template>
+  
+  <ng-template #commentsTemplate>
+    <span class="board__modal-name">Comments: {{ commentsLength }}</span>
+    <div class="board__modal-content">
+      <form class="board__modal-comments-form" #addComments="ngForm" 
+        (ngSubmit)="addComment(addComments)" ngNativeValidate>
+        
+        <app-input 
+          inputType="simple"
+          name="name" placeholder="Add comment"
+          [(ngModel)]="name"
+        ></app-input>
+
+        <app-button 
+          buttonType="text" size="submit-small"
+          title="Save" type="submit"
+        ></app-button>
+      </form>
+      
+      <div class="board__modal-comments" *ngFor="let comment of comments$ | async; let i=index">
+        <app-comment class="board__modal-item" 
+          [comment]="comment" [index]="i" (delete)="deleteComment($event)"></app-comment>
+      </div>
+    </div>
+  </ng-template>
+  
+  <ng-template #archivedTasksTemplate>
+    <span class="board__modal-name">Archived Tasks</span>
+    <div class="board__modal-content">
+      <div class="board__modal-item" *ngFor="let task of archivedTasks$ | async">
+        <div>
+          <p class="board__modal-text">{{ task.name }}</p>
+          <p class="board__modal-date"> {{ task.creationDate }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  
+  <ng-template #addTasksTemplate>
+    <div class="board__modal-content">
+      <span class="board__modal-name">{{ status }}</span>
+      <form class="board__modal-form" [formGroup]="addTaskForm" novalidate (ngSubmit)="addTask()">
+          <app-input 
+            inputType="complicated"
+            [parentForm]="addTaskForm"
+            type="text" label="Name"
+            placeholder="Enter task name" 
+            fieldName="name"
+            formControlName="name"
+          ></app-input>
+          
+          <app-button class="board__modal-btn"
+            buttonType="text"
+            title="Add Task" type="submit" 
+            [isDisabled]="addTaskForm.invalid"
+          ></app-button>
+      </form>
+    </div>
+  </ng-template>
+    
+  <div class="board__container">
+    <app-column title="ToDo" [addModal]="showAddTasksModal" 
+      [boardId]="boardId" 
+      [nameFilterValue]="nameFilterValue" [sortByValue]="sortByValue" [sortDirectionValue]="sortDirectionValue"
+      (handleClick)="showCommentsModal($event)"
+    ></app-column>
+      
+    <app-column title="In Progress" [addModal]="showAddTasksModal" 
+      [boardId]="boardId" 
+      [nameFilterValue]="nameFilterValue" [sortByValue]="sortByValue" [sortDirectionValue]="sortDirectionValue"
+      (handleClick)="showCommentsModal($event)"
+    ></app-column>
+      
+    <app-column title="Done" [addModal]="showAddTasksModal" 
+      [boardId]="boardId" 
+      [nameFilterValue]="nameFilterValue" [sortByValue]="sortByValue" [sortDirectionValue]="sortDirectionValue"
+      (handleClick)="showCommentsModal($event)"
+    ></app-column>
+  </div>
+</div>
