@@ -1,4 +1,4 @@
-# TaskControl
+# Task Manager
 
 Simple application for tracking daily tasks.
 
@@ -12,12 +12,10 @@ Simple application for tracking daily tasks.
 
 # About
 
-Angular 14
-JsonServer
-
+Task Manager is a web application with a simple interface (desktop only) for creating boards with tasks and tracking their progress. App was built using Angular 14. JSON Server was used to set up a backend.
 
 # Key features
-TaskControl application allows user to: 
+Task Manager application allows user to: 
 * login/register in the system;
 * create/delete board;
 * search board by name, sort by name or creation date (asc, desc);
@@ -30,10 +28,6 @@ TaskControl application allows user to:
 # Running Application 
 
 After cloning run `npm install`. To start the development server run `ng serve` and navigate to `http://localhost:4200/`. 
-To start jsonserver run `npm run serve`.
+To start JSON Server run `npm run serve`.
 
 To build the project run `ng build`. 
-
-
-
-
